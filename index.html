@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Where to eat out?</title>
+    <link rel="stylesheet" href="main.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" crossorigin="anonymous"></script>
+</head>
+<body>
+  <main>
+    <div class="container">
+        <h1>Where to eat out?</h1>
+
+        <form id="js-form">
+            <label for="search-city" class="r1-label">Area</label>
+            <input type="text" name="search-city" id="js-search-city" class="r1-input" placeholder="Tampa, FL" required>
+            <br>
+            <label for="search-query" class="r2-label">Cuisine</label>
+            <input type="text" name="search-query" id="js-search-query" class="r2-input" placeholder="tacos" required>
+            <br>
+            <input type="submit" value="Find Restaurants">
+        </form>
+
+        <p id="js-error-message" class="error-message"></p>
+        <section id="results" class="hidden">
+          <h2>Search results</h2>
+          <hr>
+          <ul id="results-list">
+          </ul>
+        </section>
+    </div>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
