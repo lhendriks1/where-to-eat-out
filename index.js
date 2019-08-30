@@ -29,8 +29,6 @@ function addVenueDetails(venuesObj) {
 
 //Display results
 function displayResults(venueInformation) {
-  console.log('display results called');
-  console.log(venueInformation);
   $('#results-list').empty();
 
   for (let key in venueInformation) {
@@ -44,7 +42,6 @@ function displayResults(venueInformation) {
     )
 
     let nextVenues = venueInformation[key].nextVenues;
-    console.log(nextVenues);
     for (let i = 0; i < nextVenues.length; i++) {
       $('.js-nextVenues').append(
         `<li>${nextVenues[i].name}
@@ -85,10 +82,10 @@ function getVenuePic(venueId) {
       throw new Error(r.status);
     })
     .then(rJson => {
-      var t = {};
-      t.id = venueId;
-      t.pic = rJson.response.photos.items[0].suffix;
-      return t;
+      var photoTemp = {};
+      photoTemp.id = venueId;
+      photoTemp.pic = rJson.response.photos.items[0].suffix;
+      return photoTemp;
     })
 }
 
@@ -114,10 +111,10 @@ function getNextVenue(venueId) {
       throw new Error(r.status);
     })
     .then(rJson => {
-      var t = {};
-      t.id = venueId;
-      t.venues = rJson.response.nextVenues.items;
-      return t;
+      var nextVenuesTemp = {};
+      nextVenuesTemp.id = venueId;
+      nextVenuesTemp.venues = rJson.response.nextVenues.items;
+      return nextVenuesTemp;
     });
 
 }
@@ -148,7 +145,6 @@ function getFourSqResults(location, cuisine) {
       throw new Error(r.statusText);
     })
     .then(rJson => {
-      console.log(rJson);
       let venues = rJson.response.groups[0].items;
 
       for (const v of venues) {
