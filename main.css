@@ -16,6 +16,10 @@ main {
   margin-top: 170px;
 }
 
+h1 {
+  font-size: 24px;
+}
+
 
 .container {
   max-width: 600px;
@@ -23,7 +27,7 @@ main {
 }
 
 .error-message {
-    color: red;
+    color: #930008;
 }
 
 .hidden {
@@ -58,15 +62,17 @@ label {
 input {
   border-radius: 4px;
   padding: 8px 16px;
-  width: 350px;
+  width: 300px;
   font-size: 16px;
 }
 
 input[type=submit] {
-  background-color: #DAA520;
+  background: #DAA520;
   border: 2px solid #DAA520;
   box-shadow: 0px 2px 3px 0px rgba(196, 148, 28, .5);
   width: 250px;
+  border-radius: 4px;
+  padding: 8px 16px;
 }
 
 input[type=submit]:hover {
@@ -80,4 +86,28 @@ li {
 
 ion-icon {
   padding-right: 3px;
+}
+
+
+/*---css for tablets---*/
+@media only screen and (min-width: 500px) {
+
+  input {
+    width: 425px;
+  }
+
+  h1 {
+    font-size: 29px;
+  }
+
+  label, input, .link {
+    font-size: 20px;
+  }
+
+
+}
+
+
+/*-----css for laptops-----*/
+@media only screen and (min-width: 834px) {
 }
