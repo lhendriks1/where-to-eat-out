@@ -57,8 +57,8 @@ function displayResults(venueInformation) {
 
   $('#results').removeClass('hidden');
 
-  $('#results-list').on('click', '.link', function(){
-      $('#next-venues-results').toggle();
+  $('#results-list').on('click', '.link', function() {
+    $('#next-venues-results').toggle();
   })
 
 };
@@ -109,8 +109,8 @@ function getNextVenue(venueId) {
   return fetch(`${venuesEndPoint}${venueId}/nextvenues?${venueQueryString}`)
     .then(r => {
       if (r.ok) {
-      return r.json()
-    }
+        return r.json()
+      }
       throw new Error(r.status);
     })
     .then(rJson => {
@@ -154,7 +154,7 @@ function getFourSqResults(location, cuisine) {
       for (const v of venues) {
         venueInformation[v.venue.id] = {
           name: v.venue.name,
-          address: v.venue.location.formattedAddress.slice(0,2).join(", ")
+          address: v.venue.location.formattedAddress.slice(0, 2).join(", ")
         }
       }
 
@@ -172,8 +172,11 @@ function getFourSqResults(location, cuisine) {
       if (err.message == 429) {
         $('#js-error-message').text(`Try again in 1 hour. Sorry -- to keep this service **free** we have to limit the number of search requests.`);
       }
+      else if (err.message == 400) {
+        $('#js-error-message').text('Hmmm.. we don\'t have any information on that');
+      }
       else {
-      $('#js-error-message').text(`Whoops, something went wrong.`);
+        $('#js-error-message').text(`Whoops, something went wrong.`);
       }
     });
 }
@@ -183,6 +186,10 @@ function getFourSqResults(location, cuisine) {
 //Watch form
 function watchForm() {
   $('form').submit(event => {
+
+    venueInformation = {}; //empty existing results
+    $('#js-error-message').empty(); //empty existing error messages
+
     event.preventDefault();
     const location = $('#js-search-city').val();
     const cuisine = $('#js-search-query').val();
