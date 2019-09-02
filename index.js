@@ -36,9 +36,10 @@ function displayResults(venueInformation) {
       `<img src="https://igx.4sqi.net/img/general/220x220${venueInformation[key].pic}" alt="food from restaurant">
       <h3>${venueInformation[key].name}</h3>
       <p><ion-icon name="pin"></ion-icon>${venueInformation[key].address}</p>
-      <p><button class="link">Where to go next?</button></p>
-        <div id="next-venues-results" class="js-nextVenues hidden">
-        </div>`
+      <button class="link">Where to go next?</button>
+        <div class="js-nextVenues hidden">
+        </div>
+      <br>`
     )
 
     let nextVenues = venueInformation[key].nextVenues;
@@ -55,7 +56,7 @@ function displayResults(venueInformation) {
   $('#results').removeClass('hidden');
 
   $('#results-list').on('click', '.link', function() {
-    $('#next-venues-results').toggle();
+    $(this).next('.js-nextVenues').toggle();
   })
 
 };
