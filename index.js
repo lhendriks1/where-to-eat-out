@@ -54,11 +54,6 @@ function displayResults(venueInformation) {
   }
 
   $('#results').removeClass('hidden');
-
-  $('#results-list').on('click', '.link', function() {
-    $(this).next('.js-nextVenues').toggle();
-  })
-
 };
 
 //Call foursquare api to get venue picture data
@@ -193,5 +188,11 @@ function watchForm() {
     getFourSqResults(location, cuisine);
   });
 }
+
+
+$('#results-list').on('click', '.link', function(event) {
+  console.log(event.target);
+  $(this).next('.js-nextVenues').toggle();
+});
 
 $(watchForm);
