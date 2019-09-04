@@ -20,8 +20,52 @@ h1 {
   font-size: 24px;
 }
 
-#results-list {
-  padding-left: 0px;
+img {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 40px;
+}
+
+form {
+  display: grid;
+  grid-gap: 5px;
+}
+
+label {
+  font-size: 16px;
+}
+
+input {
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 300px;
+  font-size: 16px;
+}
+
+input[type=submit] {
+  background: #daa520;
+  border: 2px solid #daa520;
+  box-shadow: 0 2px 3px 0 rgba(196, 148, 28, .5);
+  width: 250px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type=submit]:hover {
+  cursor: pointer;
+}
+
+li {
+  padding-top: 10px;
+  margin-left: 4px;
+  list-style: none;
+}
+
+ion-icon {
+  padding-right: 3px;
 }
 
 .container {
@@ -54,53 +98,10 @@ h1 {
   cursor: pointer;
 }
 
-.float-right {
-  float: right;
-}
-
 .subtext {
   font-size: 16px;
   color: gray;
   font-style: italic;
-}
-
-
-img {
-  display: inline-block;
-  margin-right: 20px;
-  margin-top: 40px;
-}
-
-form {
-  display: grid;
-  grid-gap: 5px;
-}
-
-label {
-  font-size: 16px;
-}
-
-input {
-  border-radius: 4px;
-  padding: 8px 16px;
-  width: 300px;
-  font-size: 16px;
-}
-
-input[type=submit] {
-  background: #DAA520;
-  border: 2px solid #DAA520;
-  box-shadow: 0px 2px 3px 0px rgba(196, 148, 28, .5);
-  width: 250px;
-  border-radius: 4px;
-  padding: 8px 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-input[type=submit]:hover {
-  cursor: pointer;
 }
 
 .bold {
@@ -111,15 +112,15 @@ input[type=submit]:hover {
   font-weight: lighter;
 }
 
-li {
-  padding-top: 10px;
-  margin-left: 4px;
-  list-style: none;
+.float-right {
+  float: right;
 }
 
-ion-icon {
-  padding-right: 3px;
+
+#results-list {
+  padding-left: 0;
 }
+
 
 
 /*---css for tablets---*/
@@ -137,12 +138,8 @@ ion-icon {
     font-size: 29px;
   }
 
-  label, input, .link {
+  .next-venues-button, label, input, {
     font-size: 20px;
-  }
-
-  #results-list {
-    padding-left: 40px;
   }
 
   .next-venues-button {
@@ -154,9 +151,8 @@ ion-icon {
     margin-right: 40px;
   }
 
-}
+  #results-list {
+    padding-left: 40px;
+  }
 
-
-/*-----css for laptops-----*/
-@media only screen and (min-width: 834px) {
 }

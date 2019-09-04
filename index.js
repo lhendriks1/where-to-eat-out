@@ -1,6 +1,6 @@
 'use strict';
 
-//Global variables
+// global variables
 let venueInformation = {};
 
 const clientId = 'UUOPQTBDPSBVYHUIUCCJRP21KATM3Y5BQGUCBBZMIQU2HFIG';
@@ -8,7 +8,6 @@ const clientSecret = 'TSX4RM0T4SUT0ZEGHC1PH4AWSRCPEXIAD2OXR04UJSD530ZJ';
 const venuesEndPoint = 'https://api.foursquare.com/v2/venues/';
 const version = '20180801';
 
-//Format query params for api calls
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
@@ -16,7 +15,6 @@ function formatQueryParams(params) {
 }
 
 function addVenueDetails(venuesObj) {
-
   if ("venues" in venuesObj) {
     venueInformation[venuesObj.id].nextVenues = venuesObj.venues;
   } else if ("pic" in venuesObj) {
@@ -26,8 +24,6 @@ function addVenueDetails(venuesObj) {
   }
 }
 
-
-//Display results
 function displayResults(venueInformation) {
   $('#results-list').empty();
 
@@ -51,7 +47,7 @@ function displayResults(venueInformation) {
       $('.js-nextVenues').append(
         `<li><span class="bold">${nextVenues[i].name}</span>
         <br>
-         <span class="lighter">${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}</span>
+          <span class="lighter">${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}</span>
         </li>`
       )
     }
@@ -60,20 +56,20 @@ function displayResults(venueInformation) {
   $('#results').removeClass('hidden');
 };
 
-//Call foursquare api to get venue picture data
+// call foursquare api to get venue picture data
 function getVenuePic(venueId) {
 
-  // Construct a query object
+  // construct a query object
   const venueParams = {
     v: version,
     client_id: clientId,
     client_secret: clientSecret
   };
 
-  // Format query object into a string
+  // format query object into a string
   const venueQueryString = formatQueryParams(venueParams);
 
-  // Fetch the next Venues photo as a Promise
+  // fetch the next Venues photo as a Promise
   return fetch(`${venuesEndPoint}${venueId}/photos?${venueQueryString}`)
     .then(r => {
       if (r.ok) {
@@ -89,20 +85,20 @@ function getVenuePic(venueId) {
     })
 }
 
-// Returns a promise that fullfills with a object for next Venues
+// returns a promise that fullfills with a object for next Venues
 function getNextVenue(venueId) {
 
-  // Construct a query object
+  // construct a query object
   const venueParams = {
     v: version,
     client_id: clientId,
     client_secret: clientSecret
   };
 
-  // Format query object into a string
+  // format query object into a string
   const venueQueryString = formatQueryParams(venueParams);
 
-  // Fetch the next Venues object as a Promise
+  // fetch the next Venues object as a Promise
   return fetch(`${venuesEndPoint}${venueId}/nextvenues?${venueQueryString}`)
     .then(r => {
       if (r.ok) {
@@ -119,11 +115,8 @@ function getNextVenue(venueId) {
 
 }
 
-
-
-//Inital api call to get foursquare venue results
+// initial api call to get foursquare venue results
 function getFourSqResults(location, cuisine) {
-
 
   const exploreParams = {
     near: location,
@@ -177,14 +170,14 @@ function getFourSqResults(location, cuisine) {
     });
 }
 
-
-
-//Watch form
 function watchForm() {
   $('form').submit(event => {
 
-    venueInformation = {}; //empty existing results
-    $('#js-error-message').empty(); //empty existing error messages
+    // empty existing results from global obj
+    venueInformation = {};
+
+    // empty existing error messages
+    $('#js-error-message').empty();
 
     event.preventDefault();
     const location = $('#js-search-city').val();
@@ -193,7 +186,7 @@ function watchForm() {
   });
 }
 
-
+// listen for clicks to toggle (hide/show) the 'next venues' section
 $('#results-list').on('click', '.next-venues-button', function(event) {
   $(this).children('.js-nextVenues').toggle();
 });
