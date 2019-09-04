@@ -13,15 +13,21 @@ Built with HTML, CSS, Javascript, jQuery, & foursquare API
 
 Search:
 
+<kbd>
 <img src="./screenshots/screen-shot-home.png" alt="search box" width="500" height="500">
+</kbd>
 
 Results:
 
+<kbd>
 <img src="./screenshots/screen-shot-results.png" alt="results" width="500" height="500">
+</kbd>
 
 Next Venues:
 
+<kbd>
 <img src="./screenshots/screen-shot-next-venues.png" alt="next venues" width="500" height="500">
+</kbd>
 
 ## Live Demo
 https://lhendriks1.github.io/where-to-eat-out/
