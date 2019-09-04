@@ -20,10 +20,14 @@ h1 {
   font-size: 24px;
 }
 
+#results-list {
+  padding-left: 0px;
+}
 
 .container {
   max-width: 600px;
-  margin-left: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .error-message {
@@ -34,15 +38,32 @@ h1 {
   display: none;
 }
 
-.link {
-  padding: 0px;
+.next-venues-button {
   font-size: 16px;
-  text-decoration: underline;
-  border: none;
-  background-color: none;
-  color: blue;
-
+  background: #ffffff;
+  border: 2px solid silver;
+  width: 90%;
+  border-radius: 4px;
+  padding: 8px 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
+
+.next-venues-button:hover {
+  cursor: pointer;
+}
+
+.float-right {
+  float: right;
+}
+
+.subtext {
+  font-size: 16px;
+  color: gray;
+  font-style: italic;
+}
+
 
 img {
   display: inline-block;
@@ -82,9 +103,18 @@ input[type=submit]:hover {
   cursor: pointer;
 }
 
+.bold {
+  font-weight: 500;
+}
+
+.lighter {
+  font-weight: lighter;
+}
+
 li {
   padding-top: 10px;
   margin-left: 4px;
+  list-style: none;
 }
 
 ion-icon {
@@ -107,6 +137,18 @@ ion-icon {
     font-size: 20px;
   }
 
+  #results-list {
+    padding-left: 40px;
+  }
+
+  .next-venues-button {
+    width: 80%;
+  }
+
+  .container {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 
 }
 
