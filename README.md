@@ -13,10 +13,10 @@ Built with HTML, CSS, Javascript, jQuery, & foursquare API
 
 ## Screenshots
 Search page
-![Search Box]("./resources/screen-shot-home.png")
+![Search Box]("/screenshots/screen-shot-home.png")
 
 Results section
-![Results Section]("./resources/sceen-shot-results.png")
+![Results Section]("/screenshots/screen-shot-results.png")
 
 Next Venues Section
-![Next Venues]("./resources/screen-shot-next-venues.png")
+![Next Venues]("/screenshots/screen-shot-next-venues.png")
