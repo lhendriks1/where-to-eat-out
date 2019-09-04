@@ -1,7 +1,5 @@
 # Where to eat out?
 
-link: https://lhendriks1.github.io/where-to-eat-out/
-
 ## Summary
 Helps users plan going out to eat. The app takes user input for location and desired cuisine. Results include venue name, address, photo, and a list of suggested next venues.
 
@@ -12,11 +10,18 @@ I love eating out and trying new restaurants :fork_and_knife:. I wanted to take 
 Built with HTML, CSS, Javascript, jQuery, & foursquare API
 
 ## Screenshots
-Search page
-![Search Box]("/screenshots/screen-shot-home.png")
 
-Results section
-![Results Section]("/screenshots/screen-shot-results.png")
+Search:
 
-Next Venues Section
-![Next Venues]("/screenshots/screen-shot-next-venues.png")
+<img src="./screenshots/screen-shot-home.png" alt="search box" width="500" height="500">
+
+Results:
+
+<img src="./screenshots/screen-shot-results.png" alt="results" width="500" height="500">
+
+Next Venues:
+
+<img src="./screenshots/screen-shot-next-venues.png" alt="next venues" width="500" height="500">
+
+## Live Demo
+https://lhendriks1.github.io/where-to-eat-out/
