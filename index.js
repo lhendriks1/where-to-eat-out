@@ -36,18 +36,22 @@ function displayResults(venueInformation) {
       `<img src="https://igx.4sqi.net/img/general/220x220${venueInformation[key].pic}" alt="food from restaurant">
       <h3>${venueInformation[key].name}</h3>
       <p><ion-icon name="pin"></ion-icon>${venueInformation[key].address}</p>
-      <button class="link">Where to go next?</button>
+      <div class="next-venues-button">
+        Where to go next? <ion-icon class="float-right" name="arrow-dropdown"></ion-icon>
         <div class="js-nextVenues hidden">
+        <hr>
+        <p class="subtext">These are venues that people often visit after the current venue</p>
         </div>
+      </div>
       <br>`
     )
 
     let nextVenues = venueInformation[key].nextVenues;
     for (let i = 0; i < nextVenues.length; i++) {
       $('.js-nextVenues').append(
-        `<li>${nextVenues[i].name}
+        `<li><span class="bold">${nextVenues[i].name}</span>
         <br>
-         ${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}
+         <span class="lighter">${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}</span>
         </li>`
       )
     }
@@ -190,9 +194,8 @@ function watchForm() {
 }
 
 
-$('#results-list').on('click', '.link', function(event) {
-  console.log(event.target);
-  $(this).next('.js-nextVenues').toggle();
+$('#results-list').on('click', '.next-venues-button', function(event) {
+  $(this).children('.js-nextVenues').toggle();
 });
 
 $(watchForm);
