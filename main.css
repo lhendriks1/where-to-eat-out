@@ -6,7 +6,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-image: url("./resources/bg-food.jpg");
   background-repeat: repeat-x;
-  background-size: auto 140px;
+  background-size: auto 120px;
   background-position: top;
   top: -50px;
   padding-top: 10px;
@@ -124,6 +124,10 @@ ion-icon {
 
 /*---css for tablets---*/
 @media only screen and (min-width: 500px) {
+
+  body {
+    background-size: auto 140px;
+  }
 
   input {
     width: 425px;
