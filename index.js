@@ -158,6 +158,7 @@ function getFourSqResults(location, cuisine) {
       displayResults(venueInformation);
     })
     .catch(err => {
+      $('#results-list').empty();
       if (err.message == 429) {
         $('#js-error-message').text(`Try again in 1 hour. Sorry -- to keep this service **free** we have to limit the number of search requests.`);
       }
