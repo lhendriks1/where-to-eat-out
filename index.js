@@ -14,11 +14,11 @@ function formatQueryParams(params) {
   return queryItems.join('&');
 }
 
-function addVenueDetails(venuesObj) {
-  if ("venues" in venuesObj) {
-    venueInformation[venuesObj.id].nextVenues = venuesObj.venues;
-  } else if ("pic" in venuesObj) {
-    venueInformation[venuesObj.id].pic = venuesObj.pic;
+function addVenueDetails(nextVenuesObj) {
+  if ("venues" in nextVenuesObj) {
+    venueInformation.venuesObj[nextVenuesObj.id].nextVenues = nextVenuesObj.venues;
+  } else if ("pic" in nextVenuesObj) {
+    venueInformation.venuesObj[nextVenuesObj.id].pic = nextVenuesObj.pic;
   } else {
     throw error("missing next venues or pic");
   }
@@ -27,11 +27,13 @@ function addVenueDetails(venuesObj) {
 function displayResults(venueInformation) {
   $('#results-list').empty();
 
-  for (let key in venueInformation) {
+  $('#js-query-input').text(`Results for ${venueInformation.location.toUpperCase()} and ${venueInformation.cuisine.toUpperCase()}`);
+
+  for (let key in venueInformation.venuesObj) {
     $('#results-list').append(
-      `<img src="https://igx.4sqi.net/img/general/220x220${venueInformation[key].pic}" alt="food from restaurant">
-      <h3>${venueInformation[key].name}</h3>
-      <p><ion-icon name="pin"></ion-icon>${venueInformation[key].address}</p>
+      `<img src="https://igx.4sqi.net/img/general/220x220${venueInformation.venuesObj[key].pic}" alt="food from restaurant">
+      <h3>${venueInformation.venuesObj[key].name}</h3>
+      <p><ion-icon name="pin"></ion-icon>${venueInformation.venuesObj[key].address}</p>
       <div class="next-venues-button">
         Where to go next? <ion-icon class="float-right" name="arrow-dropdown"></ion-icon>
         <div class="js-nextVenues hidden">
@@ -41,7 +43,7 @@ function displayResults(venueInformation) {
       </div>`
     )
 
-    let nextVenues = venueInformation[key].nextVenues;
+    let nextVenues = venueInformation.venuesObj[key].nextVenues;
     for (let i = 0; i < nextVenues.length; i++) {
       $('.js-nextVenues').append(
         `<li><span class="bold block">${nextVenues[i].name}</span>
@@ -50,7 +52,9 @@ function displayResults(venueInformation) {
       )
     }
   }
-
+  
+  $('#js-search-city').val("");
+  $('#js-search-query').val("");
   $('#results').removeClass('hidden');
 };
 
@@ -140,13 +144,14 @@ function getFourSqResults(location, cuisine) {
       let venues = rJson.response.groups[0].items;
 
       for (const v of venues) {
-        venueInformation[v.venue.id] = {
+        venueInformation.venuesObj[v.venue.id] = {
           name: v.venue.name,
           address: v.venue.location.formattedAddress.slice(0, 2).join(", ")
         }
       }
 
-      var venueIdArr = Object.keys(venueInformation);
+      var venueIdArr = Object.keys(venueInformation.venuesObj);
+
       return Promise.all([getNextVenue(venueIdArr[0]), getNextVenue(venueIdArr[1]), getVenuePic(venueIdArr[0]), getVenuePic(venueIdArr[1])]);
     })
     .then(returnArray => {
@@ -184,11 +189,17 @@ function watchForm() {
 
     // empty existing error messages
     $('#results').addClass('hidden');
+    $('#js-query-input').empty();
     $('#js-error-message').empty();
 
     event.preventDefault();
     const location = $('#js-search-city').val();
     const cuisine = $('#js-search-query').val();
+
+    venueInformation['location'] = $('#js-search-city').val();
+    venueInformation['cuisine'] = $('#js-search-query').val();
+    venueInformation['venuesObj'] = {};
+
     getFourSqResults(location, cuisine);
   });
 }

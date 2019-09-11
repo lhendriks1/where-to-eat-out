@@ -41,6 +41,10 @@ img {
   margin-top: 40px;
 }
 
+img:first-child {
+  margin-top: 20px;
+}
+
 fieldset {
   border: none;
   display: grid;
@@ -136,6 +140,10 @@ ion-icon {
 
 .float-right {
   float: right;
+}
+
+.results {
+  padding: 5px;
 }
 
 
