@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Where to eat out?</title>
-    <link rel="icon" href="./resources/fork-knife.png" type="image/png">
+    <link rel="icon" href="./resources/fork-knife.png" type="image/svg">
     <link rel="stylesheet" href="main.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="container">
+  <header>
+    <h1>Where to eat out?</h1>
+  </header>
   <main>
-    <div class="container">
-        <h1>Where to eat out?</h1>
-
+    <section class="form">
         <form id="js-form">
+          <fieldset>
             <label for="js-search-city" class="r1-label">Area</label>
             <input type="text" name="search-city" id="js-search-city" placeholder="e.g. Seattle, WA or Chinatown, DC" required>
-            <br>
             <label for="js-search-query">Cuisine</label>
             <input type="text" name="search-query" id="js-search-query" placeholder="e.g. tacos" required>
-            <br>
             <input type="submit" value="Find Restaurants">
+          </fieldset>
         </form>
 
         <p id="js-error-message" class="error-message"></p>
@@ -31,6 +33,7 @@
           <ul id="results-list">
           </ul>
         </section>
+      </div>
     </div>
     </main>
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>

@@ -38,15 +38,13 @@ function displayResults(venueInformation) {
         <hr>
         <p class="subtext">These are venues that people often visit after the current venue</p>
         </div>
-      </div>
-      <br>`
+      </div>`
     )
 
     let nextVenues = venueInformation[key].nextVenues;
     for (let i = 0; i < nextVenues.length; i++) {
       $('.js-nextVenues').append(
-        `<li><span class="bold">${nextVenues[i].name}</span>
-        <br>
+        `<li><span class="bold block">${nextVenues[i].name}</span>
           <span class="lighter">${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}</span>
         </li>`
       )
@@ -91,6 +89,7 @@ function getNextVenue(venueId) {
   // construct a query object
   const venueParams = {
     v: version,
+    limit: '5',
     client_id: clientId,
     client_secret: clientSecret
   };
@@ -160,10 +159,16 @@ function getFourSqResults(location, cuisine) {
     .catch(err => {
       $('#results-list').empty();
       if (err.message == 429) {
-        $('#js-error-message').text(`Try again in 1 hour. Sorry -- to keep this service **free** we have to limit the number of search requests.`);
+        $('#js-error-message').text(`Try again in 1 hour. Sorry -- to keep this service free we have to limit the number of search requests.`);
       }
       else if (err.message == 400) {
-        $('#js-error-message').text('Hmmm.. we don\'t have any information on that');
+        $('#js-error-message').text('We don\'t have any information for that place/venue. Make sure to include the city + state (& check your spelling)');
+      }
+      else if (err.message == 500) {
+        $('#js-error-message').text('Our bad -- our server is grumpy. Please try your request again later.');
+      }
+      else if (err.message == 401 | err.message == 403) {
+        $('#js-error-message').text('This request is not authorized.');
       }
       else {
         $('#js-error-message').text(`Whoops, something went wrong.`);
@@ -178,6 +183,7 @@ function watchForm() {
     venueInformation = {};
 
     // empty existing error messages
+    $('#results').addClass('hidden');
     $('#js-error-message').empty();
 
     event.preventDefault();
@@ -188,8 +194,11 @@ function watchForm() {
 }
 
 // listen for clicks to toggle (hide/show) the 'next venues' section
-$('#results-list').on('click', '.next-venues-button', function(event) {
-  $(this).children('.js-nextVenues').toggle();
-});
+function nextVenuesClickHandler() {
+  $('#results-list').on('click', '.next-venues-button', function(event) {
+    $(this).children('.js-nextVenues').toggle();
+  });
+}
 
+$(nextVenuesClickHandler);
 $(watchForm);

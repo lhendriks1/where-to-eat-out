@@ -4,20 +4,35 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url("./resources/bg-food.jpg");
-  background-repeat: repeat-x;
-  background-size: auto 120px;
-  background-position: top;
-  top: -50px;
-  padding-top: 10px;
+  background-image: url("./resources/restaurant.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 20px 10px;
+
+}
+
+header {
+  text-align: center;
+  border-radius: 6px 6px 0 0;
+  padding: 30px;
 }
 
 main {
-  margin-top: 170px;
+  border-radius: 0 0 6px 6px;
+  /* padding-right: 15px; */
+  /* padding-left: 0px; */
+}
+
+.container {
+min-width: 325px;
+background-color: rgba(255, 255, 255, .9);
+padding: 20px;
 }
 
 h1 {
   font-size: 24px;
+  margin: 0;
 }
 
 img {
@@ -26,27 +41,33 @@ img {
   margin-top: 40px;
 }
 
-form {
+fieldset {
+  border: none;
   display: grid;
-  grid-gap: 5px;
+  margin: auto;
+  max-width: 700px;
 }
 
 label {
   font-size: 16px;
+  padding-top: 8px;
+  margin-left: 2px;
 }
 
 input {
   border-radius: 4px;
   padding: 8px 16px;
-  width: 300px;
+  margin: 8px 0px 22px 0;
+  width: 100%;
   font-size: 16px;
 }
 
 input[type=submit] {
-  background: #daa520;
-  border: 2px solid #daa520;
-  box-shadow: 0 2px 3px 0 rgba(196, 148, 28, .5);
-  width: 250px;
+  background: rgb(7, 48, 207);
+  border: 2px solid rgb(7, 48 207);
+  box-shadow: 0 1px 5px 0 rgba(7, 48, 207, .5);
+  color: white;
+  width: 225px;
   border-radius: 4px;
   padding: 8px 16px;
   -webkit-appearance: none;
@@ -59,23 +80,19 @@ input[type=submit]:hover {
 }
 
 li {
-  padding-top: 10px;
-  margin-left: 4px;
-  list-style: none;
+  padding: 8px 2px;
+  margin-left: 14px;
+  list-style-type: circle;
 }
 
 ion-icon {
   padding-right: 3px;
 }
 
-.container {
-  max-width: 600px;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
 .error-message {
     color: #930008;
+    padding: 0 6px 0 10px;
+    font-size: 18px;
 }
 
 .hidden {
@@ -89,6 +106,7 @@ ion-icon {
   width: 90%;
   border-radius: 4px;
   padding: 8px 16px;
+  margin-bottom: 16px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -108,6 +126,10 @@ ion-icon {
   font-weight: 500;
 }
 
+.block {
+  display: block;
+}
+
 .lighter {
   font-weight: lighter;
 }
@@ -124,35 +146,74 @@ ion-icon {
 
 
 /*---css for tablets---*/
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 600px) {
 
   body {
-    background-size: auto 140px;
+    width: 80vw;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
   }
 
+  header {
+    border: 5px solid rgba(255, 255, 255, .1);
+
+  }
+
+  label {
+    margin-left: 12px;
+  }
+
+
   input {
-    width: 425px;
+    width: 90%;
+    margin-left: 12px;
   }
 
   h1 {
     font-size: 29px;
   }
 
-  .next-venues-button, label, input, {
+  label, input, {
     font-size: 20px;
+  }
+
+  input[type=submit] {
+    width: 250px;
+  }
+
+  .container {
+    margin-top: 40px;
   }
 
   .next-venues-button {
     width: 80%;
   }
 
-  .container {
-    margin-left: 40px;
-    margin-right: 40px;
+  .error-message {
+    padding: 0 22px;
+    font-size: 22px;
   }
 
   #results-list {
     padding-left: 40px;
+  }
+
+}
+
+/*---css for tablets---*/
+@media only screen and (min-width: 1200px) {
+  body {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .container {
+    margin-top: 60px;
+  }
+
+  .error-message {
+    padding: 0 38px;
   }
 
 }
