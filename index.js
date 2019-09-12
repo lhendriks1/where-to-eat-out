@@ -33,7 +33,12 @@ function displayResults(venueInformation) {
     $('#results-list').append(
       `<img src="https://igx.4sqi.net/img/general/220x220${venueInformation.venuesObj[key].pic}" alt="food from restaurant">
       <h3>${venueInformation.venuesObj[key].name}</h3>
-      <p><ion-icon name="pin"></ion-icon>${venueInformation.venuesObj[key].address}</p>
+      <ion-icon name="pin" class="float-left"></ion-icon>
+      <div>
+      <span class="block">${venueInformation.venuesObj[key].address.slice(0, 1).join(", ")}</span>
+      <span>${venueInformation.venuesObj[key].address.slice(1, 2).join(", ")}</span>
+      </div>
+
       <div class="next-venues-button">
         Where to go next? <ion-icon class="float-right" name="arrow-dropdown"></ion-icon>
         <div class="js-nextVenues hidden">
@@ -47,12 +52,13 @@ function displayResults(venueInformation) {
     for (let i = 0; i < nextVenues.length; i++) {
       $('.js-nextVenues').append(
         `<li><span class="bold block">${nextVenues[i].name}</span>
-          <span class="lighter">${nextVenues[i].location.formattedAddress.slice(0,2).join(", ")}</span>
+          <span class="lighter block">${nextVenues[i].location.formattedAddress.slice(0,1).join(", ")}</span>
+          <span class="lighter block">${nextVenues[i].location.formattedAddress.slice(1,2).join(", ")}</span>
         </li>`
       )
     }
   }
-  
+
   $('#js-search-city').val("");
   $('#js-search-query').val("");
   $('#results').removeClass('hidden');
@@ -93,7 +99,7 @@ function getNextVenue(venueId) {
   // construct a query object
   const venueParams = {
     v: version,
-    limit: '5',
+    limit: 5,
     client_id: clientId,
     client_secret: clientSecret
   };
@@ -124,7 +130,7 @@ function getFourSqResults(location, cuisine) {
   const exploreParams = {
     near: location,
     query: cuisine,
-    limit: '2',
+    limit: 5,
     v: version,
     client_id: clientId,
     client_secret: clientSecret
@@ -146,36 +152,34 @@ function getFourSqResults(location, cuisine) {
       for (const v of venues) {
         venueInformation.venuesObj[v.venue.id] = {
           name: v.venue.name,
-          address: v.venue.location.formattedAddress.slice(0, 2).join(", ")
+          address: v.venue.location.formattedAddress
         }
       }
 
       var venueIdArr = Object.keys(venueInformation.venuesObj);
 
-      return Promise.all([getNextVenue(venueIdArr[0]), getNextVenue(venueIdArr[1]), getVenuePic(venueIdArr[0]), getVenuePic(venueIdArr[1])]);
+      return Promise.all(venueIdArr.map(item => [
+        getNextVenue(item), getVenuePic(item)
+      ]).flat())
     })
     .then(returnArray => {
-      addVenueDetails(returnArray[0]);
-      addVenueDetails(returnArray[1]);
-      addVenueDetails(returnArray[2]);
-      addVenueDetails(returnArray[3]);
+      for (let i = 0; i < returnArray.length; i++) {
+        addVenueDetails(returnArray[i]);
+      };
+
       displayResults(venueInformation);
     })
     .catch(err => {
       $('#results-list').empty();
       if (err.message == 429) {
         $('#js-error-message').text(`Try again in 1 hour. Sorry -- to keep this service free we have to limit the number of search requests.`);
-      }
-      else if (err.message == 400) {
-        $('#js-error-message').text('We don\'t have any information for that place/venue. Make sure to include the city + state (& check your spelling)');
-      }
-      else if (err.message == 500) {
+      } else if (err.message == 400) {
+        $('#js-error-message').text('We don\'t have any information for that place/venue.');
+      } else if (err.message == 500) {
         $('#js-error-message').text('Our bad -- our server is grumpy. Please try your request again later.');
-      }
-      else if (err.message == 401 | err.message == 403) {
+      } else if (err.message == 401 | err.message == 403) {
         $('#js-error-message').text('This request is not authorized.');
-      }
-      else {
+      } else {
         $('#js-error-message').text(`Whoops, something went wrong.`);
       }
     });

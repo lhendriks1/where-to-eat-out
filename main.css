@@ -27,7 +27,7 @@ main {
 .container {
 min-width: 325px;
 background-color: rgba(255, 255, 255, .9);
-padding: 20px;
+padding: 30px;
 }
 
 h1 {
@@ -50,6 +50,7 @@ fieldset {
   display: grid;
   margin: auto;
   max-width: 700px;
+  padding: 0;
 }
 
 label {
@@ -90,7 +91,8 @@ li {
 }
 
 ion-icon {
-  padding-right: 3px;
+  padding-right: 5px;
+  padding-bottom: 10px;
 }
 
 .error-message {
@@ -107,10 +109,10 @@ ion-icon {
   font-size: 16px;
   background: #ffffff;
   border: 2px solid silver;
-  width: 90%;
   border-radius: 4px;
   padding: 8px 16px;
   margin-bottom: 16px;
+  margin-top: 18px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -142,13 +144,12 @@ ion-icon {
   float: right;
 }
 
-.results {
-  padding: 5px;
+.float-left {
+  float: left;
 }
 
-
 #results-list {
-  padding-left: 0;
+  padding: 0;
 }
 
 
@@ -168,14 +169,8 @@ ion-icon {
 
   }
 
-  label {
-    margin-left: 12px;
-  }
-
-
   input {
     width: 90%;
-    margin-left: 12px;
   }
 
   h1 {
@@ -192,24 +187,16 @@ ion-icon {
 
   .container {
     margin-top: 40px;
-  }
-
-  .next-venues-button {
-    width: 80%;
+    padding: 50px;
   }
 
   .error-message {
     padding: 0 22px;
     font-size: 22px;
   }
-
-  #results-list {
-    padding-left: 40px;
-  }
-
 }
 
-/*---css for tablets---*/
+/*---css for laptops---*/
 @media only screen and (min-width: 1200px) {
   body {
     max-width: 800px;
@@ -218,6 +205,7 @@ ion-icon {
 
   .container {
     margin-top: 60px;
+    padding: 60px;
   }
 
   .error-message {
