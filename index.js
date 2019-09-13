@@ -20,7 +20,7 @@ function addVenueDetails(nextVenuesObj) {
   } else if ("pic" in nextVenuesObj) {
     venueInformation.venuesObj[nextVenuesObj.id].pic = nextVenuesObj.pic;
   } else {
-    throw error("missing next venues or pic");
+    throw Error("missing next venues or pic");
   }
 }
 
@@ -167,6 +167,10 @@ function getFourSqResults(location, cuisine) {
         addVenueDetails(returnArray[i]);
       };
 
+      if ($.isEmptyObject(venueInformation.venuesObj)) {
+        throw new Error('We don\'t have any information for that place/venue.')
+      };
+
       displayResults(venueInformation);
     })
     .catch(err => {
@@ -180,7 +184,7 @@ function getFourSqResults(location, cuisine) {
       } else if (err.message == 401 | err.message == 403) {
         $('#js-error-message').text('This request is not authorized.');
       } else {
-        $('#js-error-message').text(`Whoops, something went wrong.`);
+        $('#js-error-message').text(err.message);
       }
     });
 }

@@ -191,7 +191,6 @@ ion-icon {
   }
 
   .error-message {
-    padding: 0 22px;
     font-size: 22px;
   }
 }
@@ -206,10 +205,6 @@ ion-icon {
   .container {
     margin-top: 60px;
     padding: 60px;
-  }
-
-  .error-message {
-    padding: 0 38px;
   }
 
 }
