@@ -168,7 +168,7 @@ function getFourSqResults(location, cuisine) {
       };
 
       if ($.isEmptyObject(venueInformation.venuesObj)) {
-        throw new Error('We don\'t have any information for that place/venue.')
+        throw new Error(`0 results for ${venueInformation.cuisine.toUpperCase()} venues in ${venueInformation.location.toUpperCase()}`)
       };
 
       displayResults(venueInformation);
